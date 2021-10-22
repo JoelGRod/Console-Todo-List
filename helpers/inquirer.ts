@@ -57,6 +57,6 @@ export const inquirerMenu = async () => {
 }
 
 export const pause = async () => {
+    console.log("\n");
     await inquirer.prompt(pausePrompt);
-    return;
 }
