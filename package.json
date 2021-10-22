@@ -16,7 +16,8 @@
   "author": "Joel Glez Rod",
   "license": "ISC",
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "inquirer": "^8.2.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.3",
