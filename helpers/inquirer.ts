@@ -49,7 +49,7 @@ const pausePrompt = [
 export const inquirerMenu = async () => {
     console.clear();
     console.log("========================".green);
-    console.log("    Select an option    ".green);
+    console.log("    Select an option    ".white);
     console.log("========================".green);
 
     const { option } = await inquirer.prompt(questions);
@@ -59,4 +59,22 @@ export const inquirerMenu = async () => {
 export const pause = async () => {
     console.log("\n");
     await inquirer.prompt(pausePrompt);
+}
+
+export const readInput = async ( message: string ) => {
+    const question = [
+        {
+            type: "input",
+            name: "desc",
+            message,
+            validate( value: string ) {
+                if( value.length === 0 ) {
+                    return "Please, Enter a value";
+                };
+                return true;
+            }
+        }
+    ];
+    const { desc } = await inquirer.prompt(question);
+    return desc;
 }
