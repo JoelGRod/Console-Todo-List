@@ -19,7 +19,7 @@ const options = ( todoList: TodoList ): { [id: string ]: Function }  => {
             todoList.createTask(desc);
         },
         "2": () => {
-            console.log(todoList.list);
+            todoList.showTasks();
         }
     }
 }
