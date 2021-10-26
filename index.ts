@@ -2,6 +2,8 @@ import colors from "colors";
 
 // import { pause, showMenu } from "./helpers/messages";
 import { 
+    confirmation,
+    deleteTasks,
     inquirerMenu, 
     pause, 
     readInput 
@@ -27,6 +29,11 @@ const options = ( todoList: TodoList ): { [id: string ]: Function }  => {
         },
         "4": () => {
             todoList.showPendingCompletedTasks(false);
+        },
+        "6": async () => {
+            const id = await deleteTasks( todoList.list );
+            const confirm = await confirmation( "Are you sure?" );
+            if( confirm ) todoList.deleteTask(id);
         },
     }
 }

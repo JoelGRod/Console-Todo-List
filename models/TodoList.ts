@@ -1,5 +1,7 @@
-import { getDayMonthYear } from "../helpers/dates";
+// Class
 import { Task } from "./Task";
+// Helpers
+import { getDayMonthYear } from "../helpers/dates";
 
 export class TodoList {
   private _list: { [uuid: string]: Task };
@@ -21,20 +23,16 @@ export class TodoList {
     this._list[newTask.id] = newTask;
   }
 
+  public deleteTask( id: string ) {
+    if(this._list[id]) delete this._list[id];
+  }
+
   public showTasks( taskList: Task[] ): void {
     taskList.forEach( ( { desc, completedIn }, idx ) => {
         const i = `${ ( idx + 1 ) }.`.green;
         const status = completedIn ? getDayMonthYear(completedIn.toString()).green : 'Pending'.red;
         console.log(`${ i } ${ desc } :: ${ status }`);
     });
-
-    // let taskNumeration = 1;
-    // for (let { desc, completedIn } of Object.values(this._list)) {
-    //   console.log(
-    //     `${taskNumeration.toString().green + ".".green} ${desc} :: ${ completedIn ? "Completed".green : "Pending".red }`
-    //   );
-    //   taskNumeration++;
-    // }
   }
 
   public showPendingCompletedTasks( completed: boolean = true ): void {

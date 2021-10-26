@@ -1,3 +1,5 @@
+import { Task } from "../models/Task";
+
 var inquirer = require('inquirer');
 
 const questions = [
@@ -77,4 +79,49 @@ export const readInput = async ( message: string ) => {
     ];
     const { desc } = await inquirer.prompt(question);
     return desc;
+}
+
+export const deleteTasks = async ( taskList: Task[] ) => {
+
+    const choices = taskList.map( ( task, idx ) => {
+        const id = `${ idx + 1 }.`.green;
+        return {
+            name: `${ id } ${ task.desc }`,
+            value: task.id
+        }
+    });
+
+    const questions = [
+        {
+            type: "list",
+            name: "id",
+            message: "What task do you want to delete?",
+            choices
+        }
+    ];
+    
+    const { id } = await inquirer.prompt(questions);
+    return id;
+}
+
+export const confirmation = async ( message: string ) => {
+    const questions = [
+        {
+            type: "list",
+            name: "confirm",
+            message,
+            choices: [
+                {
+                    name: "Yes",
+                    value: true
+                },
+                {
+                    name: "No",
+                    value: false
+                }
+            ]
+        }
+    ];
+    const { confirm } = await inquirer.prompt(questions);
+    return confirm;
 }
