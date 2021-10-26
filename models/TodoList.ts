@@ -1,3 +1,4 @@
+import { getDayMonthYear } from "../helpers/dates";
 import { Task } from "./Task";
 
 export class TodoList {
@@ -23,10 +24,8 @@ export class TodoList {
   public showTasks( taskList: Task[] ): void {
     taskList.forEach( ( { desc, completedIn }, idx ) => {
         const i = `${ ( idx + 1 ) }.`.green;
-        const status = completedIn ? completedIn.toString().green : 'Pending'.red;
-        console.log(
-            `${ i } ${ desc } :: ${ status }`
-        );
+        const status = completedIn ? getDayMonthYear(completedIn.toString()).green : 'Pending'.red;
+        console.log(`${ i } ${ desc } :: ${ status }`);
     });
 
     // let taskNumeration = 1;
