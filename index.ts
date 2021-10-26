@@ -7,6 +7,7 @@ import {
   inquirerMenu,
   pause,
   readInput,
+  selectTasks,
 } from "./helpers/inquirer";
 import { TodoList } from "./models/TodoList";
 import { saveData, readData } from "./helpers/dataHandler";
@@ -29,6 +30,10 @@ const options = (todoList: TodoList): { [id: string]: Function } => {
     },
     "4": () => {
       todoList.showPendingCompletedTasks(false);
+    },
+    "5": async () => {
+      const ids = await selectTasks(todoList.list);
+      console.log(ids);
     },
     "6": async () => {
       const id = await deleteTasks(todoList.list);
