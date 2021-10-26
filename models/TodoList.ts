@@ -20,10 +20,10 @@ export class TodoList {
     this._list[newTask.id] = newTask;
   }
 
-  public showTasks(): void {
-    this.list.forEach( ( { desc, completedIn }, idx ) => {
-        const i = `${ (idx + 1) + '.' }`.green;
-        const status = completedIn ? 'Completed'.green : 'Pending'.red;
+  public showTasks( taskList: Task[] ): void {
+    taskList.forEach( ( { desc, completedIn }, idx ) => {
+        const i = `${ ( idx + 1 ) }.`.green;
+        const status = completedIn ? completedIn.toString().green : 'Pending'.red;
         console.log(
             `${ i } ${ desc } :: ${ status }`
         );
@@ -36,5 +36,23 @@ export class TodoList {
     //   );
     //   taskNumeration++;
     // }
+  }
+
+  public showPendingCompletedTasks( completed: boolean = true ): void {
+
+    let taskList: Task[] = [];
+    if( completed ) taskList = this.list.filter( task => task.completedIn );
+    if( !completed ) taskList = this.list.filter( task => !task.completedIn );
+
+    console.log();
+    if( taskList.length === 0 && completed ) {
+        console.log("No Completed Tasks");
+        return;
+    } else if( taskList.length === 0 && !completed ) {
+        console.log("No Pending Tasks");
+        return;
+    };
+    
+    this.showTasks( taskList );
   }
 }

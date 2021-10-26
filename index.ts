@@ -19,8 +19,15 @@ const options = ( todoList: TodoList ): { [id: string ]: Function }  => {
             todoList.createTask(desc);
         },
         "2": () => {
-            todoList.showTasks();
-        }
+            console.log();
+            todoList.showTasks( todoList.list );
+        },
+        "3": () => {
+            todoList.showPendingCompletedTasks(true);
+        },
+        "4": () => {
+            todoList.showPendingCompletedTasks(false);
+        },
     }
 }
 
