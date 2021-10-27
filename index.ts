@@ -33,7 +33,7 @@ const options = (todoList: TodoList): { [id: string]: Function } => {
     },
     "5": async () => {
       const ids = await selectTasks(todoList.list);
-      console.log(ids);
+      todoList.completeTask(ids);
     },
     "6": async () => {
       const id = await deleteTasks(todoList.list);
