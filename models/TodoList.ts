@@ -26,17 +26,7 @@ export class TodoList {
   public deleteTask(id: string) {
     if (this._list[id]) delete this._list[id];
   }
-
-  // public completeTask( completedIds: string[] ): void {
-  //   const modifiedTasks = this.list.map( task => {
-  //     if( completedIds.includes(task.id) && !task.completedIn )
-  //       task.completedIn = new Date();
-  //     if( !completedIds.includes(task.id) ) task.completedIn = null;
-  //     return task;
-  //   });
-
-  //   this.saveArrayData(modifiedTasks);
-  // }
+  
   public completeTask(completedIds: string[]): void {
     this.list.forEach((task) => {
       if (completedIds.includes(task.id) && !task.completedIn)
